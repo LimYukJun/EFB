@@ -17,7 +17,9 @@ extension FlightContext {
         text += "Airline: \(airline)\n"
         text += "Flight Number: \(flightNumber)\n"
         text += "Departure: \(departure)\n"
-        text += "Arrival: \(arrival)\n\n"
+        text += "Arrival: \(arrival)\n"
+        text += "Step Alts: \(stepclimb_string)\n"
+        text += "Route: \(route)\n\n"
 
         // MARK: - Performance
         text += "PERFORMANCE\n"

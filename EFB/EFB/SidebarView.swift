@@ -10,12 +10,11 @@ import SwiftUI
 struct SidebarView: View {
     
     @ObservedObject var ctx: FlightContext
-    @State private var chartsLIDO = false
     
     var body: some View {
         List {
             NavigationLink("Flight Info") {
-                FlightInfoView(depTime: "", chartsLIDO: $chartsLIDO)
+                FlightInfoView(depTime: "")
             }
 
             NavigationLink("Performance") {
@@ -29,12 +28,20 @@ struct SidebarView: View {
             NavigationLink("Weather") {
                 WeatherNotamView()
             }
+            
+            NavigationLink("NOTAMs") {
+                NotamView()
+            }
 
             NavigationLink("Delay Codes") {
                 DelayCodesView(ctx:ctx)
             }
             NavigationLink("Charts") {
-                ChartsView(chartsLIDO: $chartsLIDO)
+                ChartsView()
+            }
+            NavigationLink("OFP") {
+                ofpView()
+                    .environmentObject(OfpContext(ctx: ctx))
             }
             NavigationLink("Submit Flight") {
                 SubmitView(ctx: ctx)
