@@ -6,17 +6,26 @@
 //
 
 import SwiftUI
-import WebKit
 
 struct ChartsView: View {
-    
-    @Binding var chartsLIDO:Bool
-    
+
+    @EnvironmentObject var chartsCtx: ChartsContext
+
     var body: some View {
-        if chartsLIDO {
-            WebView(url: URL(string: "https://planner.flightsimulator.com/landing.html"))
-        }else{
-            WebView(url: URL(string: "https://charts.navigraph.com/flights"))
+        Group {
+            if chartsCtx.chartsLIDO {
+                WebView(store: chartsCtx.lidoStore)
+            } else {
+                WebView(store: chartsCtx.navigraphStore)
+            }
+        }
+        .navigationTitle(chartsCtx.chartsLIDO ? "LIDO Charts" : "Navigraph")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Toggle("LIDO", isOn: $chartsCtx.chartsLIDO)
+                    .toggleStyle(.switch)
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var ctx: FlightContext
-    //@StateObject private var ctx = FlightContext()
     
     var body: some View {
         NavigationSplitView {
